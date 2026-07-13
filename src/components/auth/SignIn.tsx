@@ -8,7 +8,7 @@ export default function SignIn() {
                 'use server';
                 await signIn('google');
             }}>
-            <Button type="submit" >Sign In</Button>
+            <Button type="submit">Sign In</Button>
         </form>
     );
 }
