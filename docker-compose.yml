@@ -1,19 +1,19 @@
 services:
-  postgres:
-    image: postgres:16
-    container_name: beyondyes-postgres
-    restart: unless-stopped
+    postgres:
+        image: postgres:16
+        container_name: beyondyes-postgres
+        restart: unless-stopped
 
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: beyondyes
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: password
+            POSTGRES_DB: beyondyes
 
-    ports:
-      - "5432:5432"
+        ports:
+            - '5432:5432'
 
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
 
 volumes:
-  postgres_data:
+    postgres_data:

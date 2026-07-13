@@ -33,39 +33,51 @@ Never optimize for:
 ## Tech Stack
 
 Framework:
+
 - Next.js App Router
 
 Language:
+
 - TypeScript
 
 Database:
+
 - PostgreSQL
 
 ORM:
+
 - Prisma
 
 Authentication:
+
 - Auth.js
 
 Validation:
+
 - Zod
 
 Forms:
+
 - React Hook Form
 
 Styling:
+
 - Tailwind CSS
 
 UI:
+
 - shadcn/ui
 
 AI:
+
 - OpenAI
 
 Emails:
+
 - Resend
 
 Deployment:
+
 - Vercel
 
 ---
@@ -79,12 +91,12 @@ Never organize primarily by component type.
 Use:
 
 features/
-    assessment/
-    auth/
-    invitation/
-    reports/
-    dashboard/
-    profile/
+assessment/
+auth/
+invitation/
+reports/
+dashboard/
+profile/
 
 Business logic belongs in lib/.
 

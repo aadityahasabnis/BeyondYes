@@ -42,10 +42,6 @@ model User {
 
   phone         String?
 
-  country       String?
-  state         String?
-  city          String?
-
   // App
   role          Role     @default(USER)
   isOnboarded   Boolean  @default(false)
