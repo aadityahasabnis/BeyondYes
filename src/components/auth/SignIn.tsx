@@ -1,14 +1,10 @@
-import { signIn } from '@/lib/auth';
-import { Button } from '../ui/button';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
-export default function SignIn() {
+export function SignIn() {
     return (
-        <form
-            action={async () => {
-                'use server';
-                await signIn('google');
-            }}>
-            <Button type="submit">Sign In</Button>
-        </form>
+        <Link href="/login">
+            <Button>Sign In</Button>
+        </Link>
     );
 }

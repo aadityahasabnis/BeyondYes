@@ -24,33 +24,45 @@ enum Role {
 }
 
 model User {
+  id              String   @id @default(cuid())
+
   // Auth
-  id            String    @id @default(cuid())
-  name          String?
-  email         String    @unique
-  emailVerified DateTime?
-  image         String?
-
-  // Profile
-  username      String?  @unique
-
-  firstName     String?
-  lastName      String?
-
-  birthDate     DateTime?
-  gender        Gender?
-
-  phone         String?
+  email           String   @unique
+  emailVerified   DateTime?
+  name            String?
+  image           String?
 
   // App
-  role          Role     @default(USER)
-  isOnboarded   Boolean  @default(false)
+  role            Role     @default(USER)
+  isOnboarded     Boolean  @default(false)
 
-  accounts Account[]
-  sessions Session[]
+  // Relations
+  profile         Profile?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  accounts        Account[]
+  sessions        Session[]
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Profile {
+  id          String   @id @default(cuid())
+
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  username    String?  @unique
+
+  birthDate   DateTime?
+  gender      Gender?
+
+  phone       String?
+
+  bio         String?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Account {
