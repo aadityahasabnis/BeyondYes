@@ -11,58 +11,68 @@ datasource db {
   provider = "postgresql"
 }
 
-enum Gender {
-  MALE
-  FEMALE
-  NON_BINARY
-  OTHER
-}
-
 enum Role {
   USER
   ADMIN
 }
 
+enum Gender {
+  MALE
+  FEMALE
+  NON_BINARY
+  PREFER_NOT_TO_SAY
+}
+
+enum RelationshipStage {
+  SINGLE
+  DATING
+  ENGAGED
+  MARRIED
+  DIVORCED
+  WIDOWED
+  PREFER_NOT_TO_SAY
+}
+
 model User {
-  id              String   @id @default(cuid())
+  id String @id @default(cuid())
 
   // Auth
-  email           String   @unique
-  emailVerified   DateTime?
-  name            String?
-  image           String?
+  email         String    @unique
+  emailVerified DateTime?
+  name          String?
+  image         String?
 
   // App
-  role            Role     @default(USER)
-  isOnboarded     Boolean  @default(false)
+  role        Role    @default(USER)
+  isOnboarded Boolean @default(false)
 
   // Relations
-  profile         Profile?
+  profile Profile?
 
-  accounts        Account[]
-  sessions        Session[]
+  accounts Account[]
+  sessions Session[]
 
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Profile {
-  id          String   @id @default(cuid())
+  id String @id @default(cuid())
 
-  userId      String   @unique
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  username    String?  @unique
+  birthDate DateTime?
+  gender    Gender
 
-  birthDate   DateTime?
-  gender      Gender?
+  relationshipStage RelationshipStage
 
-  phone       String?
+  occupation String?
 
-  bio         String?
+  receiveEmails Boolean @default(true)
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Account {
