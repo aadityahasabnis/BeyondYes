@@ -1,15 +1,16 @@
-// import SignIn from '@/components/auth/SignIn';
 import { SignIn } from '@/components/auth/SignIn';
-import SignOut from '@/components/auth/SignOut';
+import UserMenu from '@/components/layout/dropdown/UserMenu';
+import ThemeToggler from '@/components/layout/navbar/ThemeToggler';
 import { auth } from '@/lib/auth/auth';
 
 export default async function Home() {
     const session = await auth();
+    const user = session?.user;
+
     return (
-        <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-            <SignIn />
-            <SignOut />
-            <pre>{JSON.stringify(session, null, 2)}</pre>
+        <div className="flex flex-1 flex-col items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+            {!user ? <SignIn /> : <UserMenu user={user} />}
+            <ThemeToggler />
         </div>
     );
 }
